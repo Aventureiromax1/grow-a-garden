@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazenda Definitiva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main id="game-engine">
+        
+        <header>
+            <h1>Fazenda Incremental</h1>
+        </header>
+
+        <section id="story-section">
+            <h2>Recomeço</h2>
+            <p>Com um plano sólido e novas ferramentas, é hora de construir sua fazenda do zero e transformá-la em um império agrícola.</p>
+            <button id="start-game-btn">Construir Fazenda</button>
+        </section>
+
+        <div id="main-game-section" class="hidden">
+
+            <section class="recursos">
+                <h2>Recursos</h2>
+                <div class="recursos-grid" id="recursos-container">
+                    </div>
+            </section>
+
+            <div class="horizontal-layout">
+                <div class="coluna">
+                    <section>
+                        <h2>Fazenda</h2>
+                        <div id="fazenda-status-container">
+                            </div>
+                        
+                        <div class="acoes">
+                            <h3>Ações em Massa</h3>
+                            <div class="acao-item" id="acoes-container">
+                                </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Controle de Ambiente</h2>
+                        <div id="ambiente-container"></div>
+                        <h3>Equipamentos Instalados</h3>
+                        <div id="equipamentos-instalados-container"></div>
+                    </section>
+                </div>
+                <div class="coluna">
+                    <section id="mercado-section">
+                        <h2>Mercado <button id="mercado-toggle-btn">(Abrir)</button></h2>
+                        <div id="mercado-container" class="hidden">
+                             </div>
+                    </section>
+                    <section class="melhorias">
+                        <h2>Melhorias e Expansão</h2>
+                        <div id="melhorias-container">
+                            </div>
+                    </section>
+                </div>
+            </div> 
+        </div> 
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
