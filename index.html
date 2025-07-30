@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazenda Estratégica</title>
+    <title>Fazenda com Pesquisa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,33 +12,38 @@
         
         <header>
             <h1>Fazenda Incremental</h1>
+            <button id="btn-abrir-pesquisa" class="hidden">Pesquisa & Desenvolvimento</button>
         </header>
 
         <section id="story-section">
-            <h2>Gestão e Paciência</h2>
-            <p>Cada ação conta. Gerencie sua fazenda com cuidado, uma planta de cada vez, e observe seu pequeno terreno se transformar em um negócio próspero.</p>
-            <button id="start-game-btn">Começar a Gerenciar</button>
+            <h2>A Ciência do Solo</h2>
+            <p>A terra não é toda igual. Estude a composição do solo, pesquise novas culturas e combine seu conhecimento para criar sinergias poderosas e colheitas recordes.</p>
+            <button id="start-game-btn">Iniciar Análise de Solo</button>
         </section>
 
         <div id="main-game-section" class="hidden">
+            
+            <div id="evento-container" class="hidden"></div>
 
             <section class="recursos">
                 <h2>Recursos</h2>
-                <div class="recursos-grid" id="recursos-container">
-                    </div>
+                <div class="recursos-grid" id="recursos-container"></div>
             </section>
 
             <div class="horizontal-layout">
                 <div class="coluna">
                     <section>
                         <h2>Fazenda</h2>
-                        <div id="fazenda-status-container">
-                            </div>
+                        <div id="fazenda-status-container"></div>
                         
+                        <div class="acao-item">
+                            <h3>Tipo de Solo Ativo</h3>
+                            <div id="selecao-solo-container"></div>
+                        </div>
+
                         <div class="acoes">
                             <h3>Ações na Fazenda</h3>
-                            <div class="acao-item" id="acoes-container">
-                                </div>
+                            <div class="acao-item" id="acoes-container"></div>
                         </div>
                     </section>
                     <section>
@@ -51,17 +56,29 @@
                 <div class="coluna">
                     <section id="mercado-section">
                         <h2>Mercado <button data-action="toggleMercado" id="mercado-toggle-btn">(Abrir)</button></h2>
-                        <div id="mercado-container" class="hidden">
-                             </div>
+                        <div id="mercado-container" class="hidden"></div>
                     </section>
                     <section class="melhorias">
                         <h2>Melhorias e Expansão</h2>
-                        <div id="melhorias-container">
-                            </div>
+                        <div id="melhorias-container"></div>
                     </section>
                 </div>
             </div> 
-        </div> 
+        </div>
+
+        <div id="pesquisa-overlay" class="hidden">
+            <div id="pesquisa-janela">
+                <div id="pesquisa-header">
+                    <h2>Pesquisa & Desenvolvimento</h2>
+                    <button data-action="togglePesquisa" id="btn-fechar-pesquisa">X</button>
+                </div>
+                <div id="pesquisa-conteudo">
+                    <svg id="pesquisa-svg-container"></svg>
+                    <div id="pesquisa-nodes-container"></div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -15,6 +15,9 @@ h3 {
     margin-top: 1em;
 }
 h3:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+header {
+    position: relative;
+}
 
 section {
     border: 1px solid #000000;
@@ -38,7 +41,7 @@ p em { color: #555555; }
 span, strong { font-weight: bold; }
 strong { font-size: 1.1em; }
 
-.recursos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em 1em; text-align: center; }
+.recursos-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5em 1em; text-align: center; }
 
 button {
     font-family: 'Courier New', Courier, monospace; font-size: 1em; width: 100%; padding: 0.8em;
@@ -52,7 +55,9 @@ button:disabled:hover { background-color: #f0f0f0; color: #999999; }
 .botoes-acao-container { display: flex; gap: 10px; }
 .botoes-selecao { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;}
 .botoes-selecao button.ativo { background-color: #000000; color: #ffffff; border-width: 2px; }
-button#auto-clique.ativo { background-color: #000000; color: #ffffff; }
+button[data-action="toggleAutoClique"].ativo { background-color: #000000; color: #ffffff; }
+#btn-abrir-pesquisa { width: auto; padding: 5px 10px; font-size: 0.8em; margin-bottom: 1em; }
+
 
 #mercado-container { border: 1px dashed #ccc; padding: 10px; margin-top: 10px; }
 #mercado-section h2 button {
@@ -75,3 +80,82 @@ button#auto-clique.ativo { background-color: #000000; color: #ffffff; }
 .raridade-comum { border-left: 5px solid #888; }
 .raridade-incomum { border-left: 5px solid #444; }
 .raridade-raro { border-left: 5px solid #000; }
+
+#evento-container { border: 2px solid #000; background-color: #f8f9fa; padding: 1em; margin-top: 1em; text-align: center; }
+#evento-container.evento-bom { border-color: #28a745; }
+#evento-container.evento-ruim { border-color: #dc3545; }
+#evento-container h3 { margin-top: 0; border: none; }
+
+/* ESTILOS DA ÁRVORE DE PESQUISA */
+#pesquisa-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+}
+#pesquisa-janela {
+    width: 90%; height: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border: 2px solid #000;
+    display: flex; flex-direction: column;
+}
+#pesquisa-header {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 10px 20px;
+    border-bottom: 2px solid #000;
+    cursor: default;
+}
+#pesquisa-header h2 { margin: 0; }
+#btn-fechar-pesquisa {
+    width: 40px; height: 40px;
+    border-radius: 50%; border: 1px solid #000;
+    font-size: 1.2em; padding: 0; margin: 0;
+}
+#pesquisa-conteudo {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: grab; /* Cursor para indicar que pode arrastar */
+}
+#pesquisa-conteudo.panning {
+    cursor: grabbing; /* Cursor enquanto está arrastando */
+}
+#pesquisa-svg-container, #pesquisa-nodes-container {
+    position: absolute;
+    width: 200%; 
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    will-change: transform;
+}
+
+#pesquisa-svg-container { z-index: 1; }
+#pesquisa-nodes-container { z-index: 2; pointer-events: none; }
+
+#pesquisa-svg-container line {
+    stroke-width: 2px;
+}
+.linha-bloqueada { stroke: #ccc; }
+.linha-desbloqueada { stroke: #000; }
+
+.node-pesquisa {
+    position: absolute;
+    width: 130px; 
+    border: 2px solid #000;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: #fff;
+    transition: all 0.2s;
+    box-sizing: border-box; 
+    pointer-events: all;
+    cursor: default;
+}
+.node-pesquisa strong { display: block; margin-bottom: 5px; font-size: 1.1em; }
+.node-pesquisa .custo { margin-top: 8px; font-weight: bold; }
+.node-pesquisa.bloqueado { background-color: #f0f0f0; border-color: #ccc; color: #999; }
+.node-pesquisa.disponivel { border-color: #28a745; cursor: pointer; }
+.node-pesquisa.disponivel:hover { transform: scale(1.05); box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); }
+.node-pesquisa.concluido { background-color: #e0e0e0; font-weight: bold; }
